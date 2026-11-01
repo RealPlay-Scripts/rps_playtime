@@ -5,14 +5,17 @@
     The web server handles ALL session logic. No MySQL needed here.
 
     SETUP:
-    1. Set API_URL to your web server address
-    2. Set API_KEY to match FIVEM_API_KEY in your .env
-    3. ensure cfrp_playtime in server.cfg
+    1. Set rps_playtime_api_url / rps_playtime_api_key as server convars in
+       server.cfg (never commit real values — see server.cfg.example):
+         set rps_playtime_api_url "https://yoursite.example/api/server/heartbeat"
+         set rps_playtime_api_key "your-fivem-api-key"
+    2. API_KEY must match FIVEM_API_KEY on the web server (write scope only).
+    3. ensure rps_playtime in server.cfg
 ]]
 
 -- ===== CONFIG =====
-local API_URL = "https://web.goldenshoresrp.com/api/server/heartbeat"
-local API_KEY = "9f86a916e2fa51e6a801451a1e621813a1b3294889adaf994ac9b2d861ffa73d"
+local API_URL = GetConvar('rps_playtime_api_url', 'https://yoursite.example/api/server/heartbeat')
+local API_KEY = GetConvar('rps_playtime_api_key', '')
 local INTERVAL = 30  -- seconds between heartbeats
 
 -- ===== HELPER =====
